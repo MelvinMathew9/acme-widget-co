@@ -24,7 +24,8 @@ class Basket
     subtotal_after_discount = subtotal - total_discount
 
     delivery_charge = fetch_delivery_charge(subtotal_after_discount)
-    (subtotal_after_discount + delivery_charge).round(2)
+    # Use half-down rounding so .005 ties round down (54.375 -> 54.37)
+    (subtotal_after_discount + delivery_charge).round(2, BigDecimal::ROUND_HALF_DOWN)
   end
 
   private
