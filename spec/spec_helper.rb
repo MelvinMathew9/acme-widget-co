@@ -96,3 +96,5 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+$LOAD_PATH.unshift(File.expand_path('../..', __dir__)) unless $LOAD_PATH.include?(File.expand_path('../..', __dir__))
