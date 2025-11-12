@@ -1,0 +1,15 @@
+# Bundler and Ruby artifacts
+/.bundle
+/vendor/bundle
+/.vendor
+
+# Log files
+/log
+/tmp
+
+# Test coverage files
+/coverage
+
+# Editor files
+.DS_Store
+.vscode/
