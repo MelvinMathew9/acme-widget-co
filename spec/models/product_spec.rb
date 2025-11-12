@@ -7,9 +7,9 @@ require 'bigdecimal/util'
 
 RSpec.describe Product do
   describe '#initialize' do
-    let(:product_code) { 'R01' }
+    let(:product_code) { 'TR01' }
     let(:product_name) { 'Red Widget' }
-    let(:price) { '32.95' }
+    let(:price) { '12.95' }
     let(:attrs) { { code: product_code, name: product_name, price: price } }
     let(:product) { Product.new(**attrs) }
 
@@ -21,7 +21,7 @@ RSpec.describe Product do
     end
 
     context 'when price is numeric' do
-      let(:product_code) { 'G01' }
+      let(:product_code) { 'TG01' }
       let(:product_name) { 'Green Widget' }
       let(:price) { 5 }
 
