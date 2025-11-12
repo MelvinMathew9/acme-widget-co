@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bigdecimal'
 require 'bigdecimal/util'
 require_relative 'offer'
@@ -10,8 +12,8 @@ class BuyOneGetOneHalfPrice < Offer
   end
 
   def discount(items)
-    eligible_items = items.select { |i| i.code == product_code }
-    return BigDecimal("0") if eligible_items.empty?
+    eligible_items = items.select { |item| item.code == product_code }
+    return BigDecimal('0') if eligible_items.empty?
 
     product_cost = eligible_items.first.price
     num_discounts = eligible_items.size / 2
