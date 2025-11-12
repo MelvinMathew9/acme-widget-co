@@ -2,8 +2,6 @@
 
 ## Overview
 
-Architecture
-
 - `lib/models/product.rb` — Product model (code, name, price). Prices are stored as BigDecimal.
 - `lib/basket.rb` — Basket implementation: add items, compute subtotal, apply offers, pick delivery rule and calculate total.
 - `lib/rules/delivery_rules` — Delivery rule classes (e.g. `FixedDeliveryRule`).
@@ -12,7 +10,7 @@ Architecture
 
 ## Running tests
 
-This project uses RSpec. From the project root:
+This project uses RSpec.
 
 ```bash
 gem install bundler
@@ -30,7 +28,7 @@ ruby lib/main.rb
 
 ## Quick usage
 
-Here's a minimal example showing how the method is intended to be used from Ruby code:
+Here's an example showing how the method is intended to be used:
 
 ```ruby
 # Build a small catalogue
@@ -47,7 +45,7 @@ basket = Basket.new(catalogue: catalogue, delivery_rules: delivery_rules, offers
 basket.add('A')
 basket.add('B')
 
-# returns a BigDecimal; format for display yourself
+# Returns a BigDecimal
 total = basket.total
 puts format('%.2f', total)
 ```
@@ -61,9 +59,9 @@ puts format('%.2f', total)
 - Rounding and totals:
   - The `Basket#total` method returns a numeric `BigDecimal` and the sample script formats the number for display.
   - Final total rounding uses BigDecimal half-down tie-breaking (i.e. `.round(2, BigDecimal::ROUND_HALF_DOWN)`) so 54.375 -> 54.37 and 54.376 -> 54.38.
-Notes on formatting and display
-- `Basket#total` returns a `BigDecimal` so callers can choose how to format/localize it. The example script `lib/main.rb` formats using `format('%.2f', total)`.
-- This keeps presentation separate from business logic and avoids coupling rounding/formatting decisions to calculation.
+- Notes on formatting and display:
+  - `Basket#total` returns a `BigDecimal` so callers can choose how to format/localize it. The example script `lib/main.rb` formats using `format('%.2f', total)`.
+  - This keeps presentation separate from business logic and avoids coupling rounding/formatting decisions to calculation.
 
 ## Methods
 
@@ -77,5 +75,6 @@ Notes on formatting and display
   
 ## Extending rules and offers
 
-- Delivery rules and offers are intentionally extensible. Add a new rule by subclassing `DeliveryRule` and implementing `applies_to?(subtotal)` and `charge`.
+- Delivery rules and offers are intentionally extensible.
+- Add a new rule by extending `DeliveryRule` and implementing `applies_to?(subtotal)` and `charge`.
 - Add a new offer by extending `Offer` and implementing `discount(items)`.
